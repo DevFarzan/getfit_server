@@ -1,35 +1,31 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
-//var User = mongoose.model('User');
+var User = mongoose.model('user');
 
 passport.use(
     new LocalStrategy(
       {
-        usernameField: 'mobileNumber',
-        passwordField: 'Password',
+        usernameField: 'email'
       },
-      function(mobileNumber, Password, done) {
-
-        console.log( mobileNumber , Password);
-
-        User.findOne({ mobile: mobileNumber }, function (err, user) {
-           console.log("User.findOne: " , err );
-          if (err) { 
-            console.log(" err " , err );
-            return done(err); 
-          }
-          if (!user) {
-            console.log(" !user:  " , user );
-            return done(null, false, { message: 'The mobile number or password you entered is incorrect. Please try again (check caps lock).' });
-          }
-          if (!user.validPassword(Password)) {
-            console.log("  user.validPassword :  " , Password);
-            return done(null, false, { message: 'The mobile number or password you entered is incorrect. Please try again (check caps lock).' });
-          }
-          
-          return done(null, user);
-
+      function(useremail, userpassword, done) {
+  	console.log( email , userpassword  );
+    User.findOne({ email: useremail }, function (err, user) {
+      if (err) { return done(err); }
+      // Return if user not found in database
+      if (!user) {
+        return done(null, false, {
+          message: 'User not found'
         });
-    }
-));
+      }
+      // Return if password is wrong
+      if (!user.validPassword(password)) {
+        return done(null, false, {
+          message: 'Password is wrong'
+        });
+      }
+      // If credentials are correct, return the user object
+      return done(null, user);
+    });
+  }
+))

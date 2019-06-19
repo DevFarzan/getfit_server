@@ -7,6 +7,8 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     server      = app.listen(config.port),
     io          = require('socket.io').listen(server);
+require('./app/models/user');
+const router = require('./router')
 
 
 
@@ -16,6 +18,8 @@ if (process.stdout._handle) process.stdout._handle.setBlocking(true);
 //const app = express();
 app.use(bodyParser.json()) // handle json data
 app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
+
+router(app);
 app.use(cookieParser());
 //Connecting database
 
@@ -27,18 +31,22 @@ db.on('error', console.error.bind(console, 'Database connection failed:'));
 db.once('open', function (callback) {
     console.log("Database :: Interview :: connection established successfully.");
 });
+
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-//Connecting Schemas
-var models = glob.sync(config.root + '/app/models/*.js');
-models.forEach(function (models) {
-    require(models);
+app.get('/api/hello', (req, res) => {
+  res.send({ express: 'Hello From Express' });
 });
+//Connecting Schemas
+// var models = glob.sync(config.root + '/app/models/*.js');
+// models.forEach(function (models) {
+//     require(models);
+// });
 //require('./config/passport');
 
 require('./config/express')(app, config);

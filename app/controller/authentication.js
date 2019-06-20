@@ -55,3 +55,22 @@ exports.signup = function(req, res, next){
       });
     });
 }
+
+exports.getemail = function(req,res,next){
+  User.find(function(err,userEmail){
+    if(err){
+      return res.status(422).send({error:'something went wrong'});
+    }
+    else if(userEmail){
+      const emails = [];
+      for(var i=0;i<userEmail.length;i++){
+        emails.push(userEmail[i].email)
+      }
+      res.send({
+        code:200,
+        msg:'All user emails',
+        content:emails
+      })
+    }
+  })
+}

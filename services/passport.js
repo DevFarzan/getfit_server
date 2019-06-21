@@ -1,7 +1,7 @@
 const passport = require('passport');
-const mongoose = require('mongoose')
-const User = mongoose.model('user')
-const config = require('../config/config');
+const mongoose = require('mongoose');
+const User = mongoose.model('user');
+const config = require('../config/configpassport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local');
 //Create local strategy
 const localOptions = { usernameField: 'email'};
 const localLogin = new LocalStrategy(localOptions, function(email, password, done){
+  console.log(email,password)
   //verify this email and password, call done with user
   //if it is the correct email and password
   //otherwise, call done with false

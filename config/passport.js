@@ -9,7 +9,7 @@ passport.use(
         usernameField: 'email'
       },
       function(useremail, userpassword, done) {
-  	console.log( email , userpassword  );
+  	console.log( useremail , userpassword  );
     User.findOne({ email: useremail }, function (err, user) {
       if (err) { return done(err); }
       // Return if user not found in database

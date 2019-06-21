@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 //creating token for user or through user.id
 function tokenForUser(user){
+  console.log(user,'tokennnnnnn')
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user.id, iat: timestamp}, 'getfitfar3344556698765432');
 }
@@ -70,6 +71,69 @@ exports.getemail = function(req,res,next){
         code:200,
         msg:'All user emails',
         content:emails
+      })
+    }
+  })
+}
+exports.signin = function(req, res, next){
+  //user has already had their email and password auth'd
+  //we just need to give them a token
+  console.log('api hit')
+  var useremail = req.body.email;
+  var password = req.body.password;
+  console.log(useremail)
+  User.findOne({email:useremail},function(err,user){
+    if(user){
+      console.log(user,'database user');
+      //const user = this;
+
+      bcrypt.compare(password, user.password, function(err, isMatch){
+        if(err){ return callback(err); }
+        //callback(null, isMatch);
+        if(isMatch){
+          res.send({
+        token: tokenForUser(user),
+        _id:user._id,
+        email:user.email,
+        code:200,
+        //username:user.firstName +''+ user.lastName
+      });
+        }
+        else if(!isMatch){
+          res.send({
+            msg:'password not match',
+            Match:isMatch
+          })
+        }
+        //console.log(isMatch);
+      })
+
+    }
+  })
+}
+exports.comparePassword = function(req, res, next){
+  currentpassword = req.body.password;
+  email = req.body.email;
+  User.findOne({email:email},function(err,user){
+    if(user){
+      console.log(user);
+      //const user = this;
+      bcrypt.compare(currentpassword, user.password, function(err, isMatch){
+        if(err){ return callback(err); }
+        //callback(null, isMatch);
+        if(isMatch){
+          res.send({
+            msg:'password Match',
+            Match:isMatch
+          })
+        }
+        else if(!isMatch){
+          res.send({
+            msg:'Not Match',
+            Match:isMatch
+          })
+        }
+        //console.log(isMatch);
       })
     }
   })

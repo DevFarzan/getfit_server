@@ -11,6 +11,7 @@ const userSchema = new Schema({
   verified:{type:Boolean},
   name:{type:String},
   blocked:{type:Boolean},
+  forgotPasswordRand:{type:String},
   resetPasswordToken:{type:String},
   resetPasswordExpires:{type:String}
 })

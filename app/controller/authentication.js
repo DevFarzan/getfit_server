@@ -4,6 +4,7 @@ const User = mongoose.model('user');
 //var configDB = require('./config/database.js');
 //const moment = require('moment');
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt-nodejs');
 
 
@@ -14,7 +15,17 @@ function tokenForUser(user){
   return jwt.encode({ sub: user.id, iat: timestamp}, 'getfitfar3344556698765432');
 }
 
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+      user: "drens224@gmail.com",
+      pass: "drent1234"
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
 
+});
 
 exports.signup = function(req, res, next){
   console.log('API HIT')
@@ -137,4 +148,54 @@ exports.comparePassword = function(req, res, next){
       })
     }
   })
+}
+
+exports.forgotpasword = function(req,res,next){
+  var val = Math.floor(1000 + Math.random() * 9000);
+  console.log(val);
+  var email = req.body.email;
+  if(!email){
+    res.send({
+      code:404,
+      msg:'kindly give proper email'
+    })
+  }
+
+
+  //=========user email send to perticular client start=============//
+
+//host=req.get('host');
+//link=req.protocol+"://"+req.get('host')+"/verify?email="+email+"&&id="+rand;
+  mailOptions={
+    to : email,
+    subject : `${val} Is your verification code `,
+    html : `your Verification code is ${val}`
+
+  }
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+          console.log(error);
+    res.end("error");
+   }else{
+          console.log("Message sent: " + response.message);
+          console.log("Message sent: " + response.message);
+          User.updateOne(
+                  {"email":email},
+                  {$set: {"forgotPasswordRand": val}}
+              ).then(() => {
+                  res.send({
+                      code:200,
+                      data:'Email sent'
+                  });
+              }).catch(() => res.status(422).send({msg:''}));
+       }
+});
+
+
+
+
+
+    //========user email send to perticular client end===============//
+
 }

@@ -13,4 +13,5 @@ app.post('/signup',Authentication.signup);
 app.post('/signin',Authentication.signin);
 //get routes
 app.get('/getuseremail',Authentication.getemail);
+app.post('/postemail',Authentication.forgotpasword);
 }

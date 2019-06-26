@@ -228,10 +228,7 @@ exports.changePassword = function(req,res,next){
     }
     else if(userWithCode){
       if(userWithCode.forgotPasswordRand == randomCode){
-        bcrypt.compare(newPassword, userWithCode.password, function(err, isMatch){
-                if(err){ return callback(err); }
-                //callback(null, isMatch);
-                if(isMatch){
+
                     userWithCode.password = newPassword;
                     userWithCode.save(function(err,doc){
                         if(err){}
@@ -241,14 +238,6 @@ exports.changePassword = function(req,res,next){
                         })
                     })
                 }
-                else{
-                    res.send({
-                        code:404,
-                        msg:'Current Password not match'
-                    })
-                }
-                console.log(isMatch);
-            })
       }
     }
   })

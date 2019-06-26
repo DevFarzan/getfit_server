@@ -214,6 +214,10 @@ exports.forgotpasword = function(req,res,next){
               }).catch(() => res.status(422).send({msg:''}));
        }
 });
+
+    //========user email send to perticular client end===============//
+}
+
 exports.changePassword = function(req,res,next){
   var randomCode = req.body.code,
       newPassword = req.body.password;
@@ -239,12 +243,5 @@ exports.changePassword = function(req,res,next){
                     })
                 }
       }
-    }
-  })
-}
-
-
-
-    //========user email send to perticular client end===============//
-
+    })
 }

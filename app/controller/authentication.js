@@ -203,17 +203,18 @@ exports.forgotpasword = function(req,res,next){
    }else{
           console.log("Message sent: " + response.message);
           console.log("Message sent: " + response.message);
-          User.updateOne(
-                  {"email":email},
-                  {$set: {"forgotPasswordRand": val}}
-              ).then(() => {
-                  res.send({
-                      code:200,
-                      data:'Email sent'
-                  });
-              }).catch(() => res.status(422).send({msg:''}));
+
        }
 });
+User.updateOne(
+        {"email":email},
+        {$set: {"forgotPasswordRand": val}}
+    ).then(() => {
+        res.send({
+            code:200,
+            data:'Email sent'
+        });
+    }).catch(() => res.status(422).send({msg:''}));
 
     //========user email send to perticular client end===============//
 }

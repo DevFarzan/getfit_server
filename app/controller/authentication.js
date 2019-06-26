@@ -160,19 +160,42 @@ exports.forgotpasword = function(req,res,next){
       msg:'kindly give proper email'
     })
   }
-
-
   //=========user email send to perticular client start=============//
-
-//host=req.get('host');
-//link=req.protocol+"://"+req.get('host')+"/verify?email="+email+"&&id="+rand;
   mailOptions={
     to : email,
     subject : `${val} Is your verification code `,
-    html : `your Verification code is ${val}`
+    html : `<html>
+    <head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800&display=swap" rel="stylesheet">
+    </head>
+    <body style="background-color: black; padding:50px; font-family: 'Montserrat', sans-serif;">
 
+
+    <div style="text-align: center; margin-top:50px">
+    <img src="https://res.cloudinary.com/dxk0bmtei/image/upload/v1561456528/getfit-01_xmpxlq.png" width="150" height="200">
+    </div>
+    <div>
+      <p style="text-align: center; color:#aaaaaa; font-size:23px;"> You requested to reset your GetFitAthletic password.
+        <br/>
+      Enter the below verification code into the app to
+      <br/>
+      reset your password.
+      </p>
+    </div>
+
+    <div style="text-align: center; margin-top:50px">
+      <button style="width:240px; height:50px; border-radius:8px; background-color:#ff6200; border-color:#ff6200; color:white; font-size:25px; font-weight:800; font-family: 'Montserrat', sans-serif;">${val}</button>
+      <p style="font-size:15px; color:#aaaaaa;"> Click the button to copy your code. </p>
+    </div>
+
+    <div>
+      <p style="text-align: center; color:#aaaaaa; font-size:23px;">If you did not request this password change, <br/>please let us know.</p>
+    </div>
+
+
+    </body>
+    </html>`
   }
-  console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function(error, response){
      if(error){
           console.log(error);
@@ -191,8 +214,23 @@ exports.forgotpasword = function(req,res,next){
               }).catch(() => res.status(422).send({msg:''}));
        }
 });
+exports.changePassword = function(req,res,next){
+  var randomCode = req.body.code,
+      newPassword = req.body.password;
 
+  User.findOne({"forgotPasswordRand":randomCode},function(err,userWithCode){
+    if(err){
+      res.send({
+        code:200,
+        msg:'something went wrong',
+        err:err
+      })
+    }
+    else if(userWithCode){
 
+    }
+  })
+}
 
 
 

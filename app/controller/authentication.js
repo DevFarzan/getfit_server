@@ -22,7 +22,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
       pass: "drent1234"
     },
     tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: true
     }
 
 });

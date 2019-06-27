@@ -242,6 +242,12 @@ exports.changePassword = function(req,res,next){
                         })
                     })
                 }
+      else if(userWithCode.forgotPasswordRand != randomCode){
+        res.send({
+          code:200,
+          msg:'random code not match correctly with email code',
+        })
+      }
       }
     })
 }

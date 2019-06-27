@@ -233,7 +233,6 @@ exports.changePassword = function(req,res,next){
     }
     else if(userWithCode){
       if(userWithCode.forgotPasswordRand == randomCode){
-
                     userWithCode.password = newPassword;
                     userWithCode.save(function(err,doc){
                         if(err){}

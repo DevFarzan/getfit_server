@@ -106,6 +106,7 @@ exports.signin = function(req, res, next){
         token: tokenForUser(user),
         _id:user._id,
         email:user.email,
+        name:user.name,
         code:200,
         //username:user.firstName +''+ user.lastName
       });
@@ -220,18 +221,20 @@ User.updateOne(
 }
 
 exports.changePassword = function(req,res,next){
+  //console.log('change password');
   var randomCode = req.body.code,
       newPassword = req.body.password;
 
   User.findOne({"forgotPasswordRand":randomCode},function(err,userWithCode){
-    if(err){
+    //console.log(userWithCode);
+    if(err == null && userWithCode == null){
       res.send({
-        code:200,
-        msg:'something went wrong',
-        err:err
+        code:400,
+        msg:'Code is not match which we send on email'
       })
     }
     else if(userWithCode){
+      console.log(randomCode)
       if(userWithCode.forgotPasswordRand == randomCode){
             userWithCode.password = newPassword;
             userWithCode.save(function(err,doc){

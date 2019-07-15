@@ -12,7 +12,9 @@ const userSchema = new Schema({
   name:{type:String},
   blocked:{type:Boolean},
   assignTrainner:{type:String},
+  assignTrainny:{type:String},
   trainnerId:{type:String},
+  tainnyId:{type:String},
   forgotPasswordRand:{type:String},
   resetPasswordToken:{type:String},
   resetPasswordExpires:{type:String}

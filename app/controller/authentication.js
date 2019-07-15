@@ -108,6 +108,8 @@ exports.signin = function(req, res, next){
         email:user.email,
         name:user.name,
         assignTrainner:user.assignTrainner,
+        assignTrainny:user.assignTrainny,
+        tainnyId:user.tainnyId,
         trainnerId:user.trainnerId,
         code:200,
         //username:user.firstName +''+ user.lastName

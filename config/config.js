@@ -1,7 +1,7 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'development';
-    
+
 
  var config = {
     development: {
@@ -9,7 +9,7 @@ var path = require('path'),
         app: {
             name: 'mobileServer'
         },
-        port: process.env.PORT || 3000,
+        port: process.env.PORT || 8000,
         secret : "getfitfar3344556698765432",
         EvenNodeDB: 'mongodb://farzan:far@ds019882.mlab.com:19882/interviewquestion'
     },
@@ -19,7 +19,7 @@ var path = require('path'),
         app: {
             name: 'mobileServer'
         },
-        port: process.env.PORT || 3000,
+        port: process.env.PORT || 8000,
         secret : "getfitfar3344556698765432",
         EvenNodeDB: 'mongodb://farzan:far@ds019882.mlab.com:19882/interviewquestion'
     },
@@ -29,7 +29,7 @@ var path = require('path'),
         app: {
             name: 'mobileServer'
         },
-        port: process.env.PORT || 3000,
+        port: process.env.PORT || 8000,
         secret : "getfitfar3344556698765432",
         EvenNodeDB: 'mongodb://farzan:far@ds019882.mlab.com:19882/interviewquestion'
     }

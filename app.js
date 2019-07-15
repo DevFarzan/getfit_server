@@ -13,7 +13,7 @@ const router = require('./router')
 
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 if (process.stdout._handle) process.stdout._handle.setBlocking(true);
 //const app = express();
 app.use(bodyParser.json()) // handle json data
@@ -32,13 +32,13 @@ db.once('open', function (callback) {
     console.log("Database :: Interview :: connection established successfully.");
 });
 
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });

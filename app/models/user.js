@@ -11,6 +11,8 @@ const userSchema = new Schema({
   verified:{type:Boolean},
   name:{type:String},
   blocked:{type:Boolean},
+  assignTrainner:{type:String},
+  trainnerId:{type:String},
   forgotPasswordRand:{type:String},
   resetPasswordToken:{type:String},
   resetPasswordExpires:{type:String}

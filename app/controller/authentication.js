@@ -107,6 +107,8 @@ exports.signin = function(req, res, next){
         _id:user._id,
         email:user.email,
         name:user.name,
+        assignTrainner : user.assignTrainer,
+        trainnerId : user.trainerId,
         code:200,
         //username:user.firstName +''+ user.lastName
       });

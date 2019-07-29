@@ -34,6 +34,7 @@ exports.signup = function(req, res, next){
   const mobileNo = req.body.mobileNo;
   const verified = 'true';
   const name = req.body.name;
+  const type = req.body.type;
   const blocked = 'false';
   console.log(email +''+ password +''+ mobileNo +''+verified);
   if(!email || !password){
@@ -54,7 +55,8 @@ exports.signup = function(req, res, next){
         mobileNo:mobileNo,
         name:name,
         verified:verified,
-        blocked:blocked
+        blocked:blocked,
+        type:type
       });
       console.log(user,'checkingggggggg');
       user.save(function(err){

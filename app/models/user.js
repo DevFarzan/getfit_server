@@ -15,6 +15,7 @@ const userSchema = new Schema({
   assignTrainny:{type:String},
   trainnerId:{type:String},
   tainnyId:{type:String},
+  type:{type:String},
   forgotPasswordRand:{type:String},
   resetPasswordToken:{type:String},
   resetPasswordExpires:{type:String}

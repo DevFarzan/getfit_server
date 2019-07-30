@@ -12,6 +12,8 @@ var express     = require('express'),
 
 require('./app/models/user');
 require('./app/models/excersiceLog');
+require('./app/models/weightLog');
+
 app.options('*', cors())
 const router = require('./router')
 

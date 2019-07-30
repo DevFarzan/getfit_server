@@ -11,14 +11,19 @@ module.exports = function(app){
   
   //post routes
 //app.post('/signin',requireSignin,  Authentication.signin);
-app.post('/signup',Authentication.signup);
-app.post('/signin',Authentication.signin);
+app.post('/signup', cors(), Authentication.signup);
+app.post('/signin', cors(), Authentication.signin);
+app.post('/postemail', cors(), Authentication.forgotpasword);
+app.post('/changepassword', cors()  ,Authentication.changePassword);
+app.post('/postexerciselog', cors() ,exerciseLog.exerciseLogData);
+app.post('/weightLog', cors(), exerciseLog.weightLog);
+
 //get routes
 app.get('/getuseremail',Authentication.getemail);
-app.post('/postemail',Authentication.forgotpasword);
-app.post('/changepassword',Authentication.changePassword);
-app.post('/postexerciselog',cors(),exerciseLog.exerciseLogData);
 app.get('/getallexerciselog',exerciseLog.getAllLogData);
+app.get('/getweightlog',exerciseLog.getWeightLog)
+
+
 
 
 //admin routes

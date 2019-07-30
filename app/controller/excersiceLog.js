@@ -32,7 +32,24 @@ exerciseLog_info.save(function(err,data){
         })
     }
 });
+}
 
+exports.getAllLogData = function(req,res,next){
 
-
+    exercise.find(function(err,dataExercise){
+        if(err){
+            res.send({
+                code:404,
+                msg:'internal server error',
+                content:[]
+            })
+        }
+        else if(dataExercise){
+            res.send({
+                code:200,
+                msg:'All exercise log',
+                content:dataExercise
+            })
+        }
+    })
 }

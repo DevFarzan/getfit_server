@@ -18,6 +18,7 @@ app.get('/getuseremail',Authentication.getemail);
 app.post('/postemail',Authentication.forgotpasword);
 app.post('/changepassword',Authentication.changePassword);
 app.post('/postexerciselog',cors(),exerciseLog.exerciseLogData);
+app.get('/getallexerciselog',exerciseLog.getAllLogData);
 
 
 //admin routes

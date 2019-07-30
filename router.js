@@ -2,6 +2,7 @@ const Authentication = require('./app/controller/authentication');
 const passportService = require('./services/passport');
 const admin = require('./app/controller/admin');
 const exerciseLog = require('./app/controller/excersiceLog');
+const profile = require('./app/controller/profile');
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session:false });
 const requireSignin = passport.authenticate('local', {session:false});
@@ -17,6 +18,7 @@ app.post('/postemail', cors(), Authentication.forgotpasword);
 app.post('/changepassword', cors()  ,Authentication.changePassword);
 app.post('/postexerciselog', cors() ,exerciseLog.exerciseLogData);
 app.post('/weightLog', cors(), exerciseLog.weightLog);
+app.post('/profile',profile.userProfilePost);
 
 //get routes
 app.get('/getuseremail',Authentication.getemail);

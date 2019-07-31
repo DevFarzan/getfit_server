@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 const exercise = mongoose.model('exercise');
-const weight = mongoose.model('weightLog');
+const weightdata = mongoose.model('weightLog');
 
 exports.exerciseLogData = function(req, res, next){
 const exerciseName = req.body.exerciseName;
@@ -58,7 +58,9 @@ exports.getAllLogData = function(req,res,next){
 }
 
 
-exports.weightLog = function(req,res,next){
+exports.weightPostLog = function(req,res,next){
+
+    console.log('hit')
     
     const userId = req.body.userId;
     const day = req.body.day;
@@ -66,8 +68,8 @@ exports.weightLog = function(req,res,next){
     const time = req.body.time;
     const weight = req.body.weight;
     const date = req.body.date;
-
-    const weightLog_info = new weight({
+    console.log(userId,+''+day)
+    const weightLog_info = new weightdata({
         day:day,
         month:month,
         weight:weight,
@@ -75,6 +77,7 @@ exports.weightLog = function(req,res,next){
         time:time,
         userId:userId
     });
+    
     weightLog_info.save(function(err,dataweight){
         if(err){
             res.send({

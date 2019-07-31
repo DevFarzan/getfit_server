@@ -18,7 +18,7 @@ app.post('/signin', cors(), Authentication.signin);
 app.post('/postemail', cors(), Authentication.forgotpasword);
 app.post('/changepassword', cors()  ,Authentication.changePassword);
 app.post('/postexerciselog', cors() ,exerciseLog.exerciseLogData);
-app.post('/weightLog', cors(), exerciseLog.weightLog);
+app.post('/weightLog', cors(), exerciseLog.weightPostLog);
 app.post('/profile',profile.userProfilePost);
 app.post('/bmilogs', cors(), bmiPostData.bmiLogData);
 

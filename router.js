@@ -3,6 +3,7 @@ const passportService = require('./services/passport');
 const admin = require('./app/controller/admin');
 const exerciseLog = require('./app/controller/excersiceLog');
 const profile = require('./app/controller/profile');
+const bmiPostData = require('./app/controller/bmilogs');
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session:false });
 const requireSignin = passport.authenticate('local', {session:false});
@@ -19,6 +20,7 @@ app.post('/changepassword', cors()  ,Authentication.changePassword);
 app.post('/postexerciselog', cors() ,exerciseLog.exerciseLogData);
 app.post('/weightLog', cors(), exerciseLog.weightLog);
 app.post('/profile',profile.userProfilePost);
+app.post('/bmilogs', cors(), bmiPostData.bmiLogData);
 
 //get routes
 app.get('/getuseremail',Authentication.getemail);

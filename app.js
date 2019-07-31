@@ -14,7 +14,9 @@ require('./app/models/user');
 require('./app/models/excersiceLog');
 require('./app/models/weightLog');
 require('./app/models/profile');
+require('./app/models/bmilogs');
 
+//cors assigment
 app.options('*', cors())
 const router = require('./router')
 

@@ -1,3 +1,5 @@
+
+const mongoose = require('mongoose');
 const exercise = mongoose.model('exercise');
 const weight = mongoose.model('weightLog');
 

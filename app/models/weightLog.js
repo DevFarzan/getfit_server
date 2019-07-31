@@ -10,6 +10,7 @@ const weightSchema = new Schema({
     month:{type:String},
     weight:{type:String},
     day:{type:String},
+    dayOfMonth:{type:Number},
 })
 
 //model class

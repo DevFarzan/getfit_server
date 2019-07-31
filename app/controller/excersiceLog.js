@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const exercise = mongoose.model('exercise');
 const weightdata = mongoose.model('weightLog');
+const macros = mongoose.model('macrocalculater');
 
 exports.exerciseLogData = function(req, res, next){
 const exerciseName = req.body.exerciseName;
@@ -59,8 +60,6 @@ exports.getAllLogData = function(req,res,next){
 
 
 exports.weightPostLog = function(req,res,next){
-
-    console.log('hit')
     
     const userId = req.body.userId;
     const day = req.body.day;
@@ -68,6 +67,8 @@ exports.weightPostLog = function(req,res,next){
     const time = req.body.time;
     const weight = req.body.weight;
     const date = req.body.date;
+    const dayofMonth = req.body.dayOfMonth;
+
     console.log(userId,+''+day)
     const weightLog_info = new weightdata({
         day:day,
@@ -75,7 +76,8 @@ exports.weightPostLog = function(req,res,next){
         weight:weight,
         date:date,
         time:time,
-        userId:userId
+        userId:userId,
+        dayofMonth:dayofMonth
     });
     
     weightLog_info.save(function(err,dataweight){
@@ -97,7 +99,7 @@ exports.weightPostLog = function(req,res,next){
 }
 
 exports.getWeightLog = function(req,res,next){
-    weight.find(function(err,dataWeight){
+    weightdata.find(function(err,dataWeight){
         if(err){
             res.send({
                 code:404,
@@ -113,4 +115,8 @@ exports.getWeightLog = function(req,res,next){
             })
         }
     })
+}
+
+exports.macrosPostCalculater = function(req, res, next){
+    
 }

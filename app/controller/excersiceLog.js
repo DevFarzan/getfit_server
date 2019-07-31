@@ -68,9 +68,9 @@ exports.weightLog = function(req,res,next){
     const date = req.body.date;
 
     const weightLog_info = new weight({
-        exerciseName:exerciseName,
-        exerciseAmount:exerciseAmount,
-        exerciseUnit:exerciseUnit,
+        day:day,
+        month:month,
+        weight:weight,
         date:date,
         time:time,
         userId:userId

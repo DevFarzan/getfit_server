@@ -40,5 +40,5 @@ exports.bmiLogData = function(req, res, next){
             })
         }
     })
-
 }
+

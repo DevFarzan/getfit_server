@@ -67,7 +67,7 @@ exports.weightPostLog = function(req,res,next){
     const time = req.body.time;
     const weight = req.body.weight;
     const date = req.body.date;
-    const dayofMonth = req.body.dayOfMonth;
+    const dayOfMonth = req.body.dayOfMonth;
 
     console.log(userId,+''+day)
     const weightLog_info = new weightdata({
@@ -77,7 +77,7 @@ exports.weightPostLog = function(req,res,next){
         date:date,
         time:time,
         userId:userId,
-        dayofMonth:dayofMonth
+        dayOfMonth:dayOfMonth
     });
     
     weightLog_info.save(function(err,dataweight){

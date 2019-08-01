@@ -12,7 +12,7 @@ var cors = require('cors')
 module.exports = function(app){
 
   
-  //post routes
+//post routes
 //app.post('/signin',requireSignin,  Authentication.signin);
 app.post('/signup', cors(), Authentication.signup);
 app.post('/signin', cors(), Authentication.signin);
@@ -28,8 +28,6 @@ app.post('/macrodata',exerciseLog.macrosPostCalculater);
 app.get('/getuseremail',Authentication.getemail);
 app.get('/getallexerciselog',exerciseLog.getAllLogData);
 app.get('/getweightlog',exerciseLog.getWeightLog)
-
-
 
 
 //admin routes

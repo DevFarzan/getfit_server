@@ -3,6 +3,7 @@ const jwt = require('jwt-simple');
 const User = mongoose.model('user');
 //var configDB = require('./config/database.js');
 //const moment = require('moment');
+const profile = mongoose.model('userProfile');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt-nodejs');
@@ -92,39 +93,51 @@ exports.signin = function(req, res, next){
   //user has already had their email and password auth'd
   //we just need to give them a token
   console.log('api hit')
+  let specific_User_Profile = [];
   var useremail = req.body.email;
   var password = req.body.password;
-  console.log(useremail)
+  //console.log(useremail)
   User.findOne({email:useremail},function(err,user){
     if(user){
-      console.log(user,'database user');
+      //onsole.log(user,'database user');
       //const user = this;
-
-      bcrypt.compare(password, user.password, function(err, isMatch){
-        if(err){ return callback(err); }
-        //callback(null, isMatch);
-        if(isMatch){
-          res.send({
-        token: tokenForUser(user),
-        _id:user._id,
-        email:user.email,
-        name:user.name,
-        assignTrainner:user.assignTrainner,
-        assignTrainny:user.assignTrainny,
-        tainnyId:user.tainnyId,
-        trainnerId:user.trainnerId,
-        code:200,
-        //username:user.firstName +''+ user.lastName
-      });
+       
+      profile.find({"userId":user._id},function(err,specificUserProfile){
+        if(err){
+          specific_User_Profile = err;
         }
-        else if(!isMatch){
-          res.send({
-            msg:'password not match',
-            Match:isMatch
+        else if(specificUserProfile){
+          //console.log(specificUserProfile)
+          specific_User_Profile = specificUserProfile;
+          bcrypt.compare(password, user.password, function(err, isMatch){
+            if(err){ return callback(err); }
+            //callback(null, isMatch);
+            if(isMatch){
+              res.send({
+            token: tokenForUser(user),
+            _id:user._id,
+            email:user.email,
+            name:user.name,
+            assignTrainner:user.assignTrainner,
+            assignTrainny:user.assignTrainny,
+            tainnyId:user.tainnyId,
+            trainnerId:user.trainnerId,
+            profile:specific_User_Profile,
+            code:200,
+            //username:user.firstName +''+ user.lastName
+          });
+            }
+            else if(!isMatch){
+              res.send({
+                msg:'password not match',
+                Match:isMatch
+              })
+            }
+            //console.log(isMatch);
           })
         }
-        //console.log(isMatch);
       })
+     
 
     }
   })

@@ -4,6 +4,7 @@ const admin = require('./app/controller/admin');
 const exerciseLog = require('./app/controller/excersiceLog');
 const profile = require('./app/controller/profile');
 const bmiPostData = require('./app/controller/bmilogs');
+//const macroPost = require('./app/controller/')
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session:false });
 const requireSignin = passport.authenticate('local', {session:false});
@@ -21,6 +22,7 @@ app.post('/postexerciselog', cors() ,exerciseLog.exerciseLogData);
 app.post('/weightLog', cors(), exerciseLog.weightPostLog);
 app.post('/profile',profile.userProfilePost);
 app.post('/bmilogs', cors(), bmiPostData.bmiLogData);
+app.post('/macrodata',exerciseLog.macrosPostCalculater);
 
 //get routes
 app.get('/getuseremail',Authentication.getemail);

@@ -11,6 +11,9 @@ const exerciseUnit = req.body.exerciseUnit;
 const date = req.body.date;
 const time = req.body.time;
 const userId = req.body.userId;
+const month = req.body.month;
+const year = req.body.year;
+const dayOfMonth =req.body.dayOfMonth;
 
 const exerciseLog_info = new exercise({
     exerciseName:exerciseName,
@@ -18,12 +21,15 @@ const exerciseLog_info = new exercise({
     exerciseUnit:exerciseUnit,
     date:date,
     time:time,
+    month:month,
+    year:year,
+    dayOfMonth:dayOfMonth,
     userId:userId
 });
 exerciseLog_info.save(function(err,data){
     if(err){
         res.send({
-            msg:'not store any data',
+            msg:'Not store any data',
             code:404,
             content:[]
         })
@@ -31,7 +37,7 @@ exerciseLog_info.save(function(err,data){
     else if(data){
         res.send({
             code:200,
-            msg:'exercise detail post',
+            msg:'Exercise detail post',
             content:data
         })
     }

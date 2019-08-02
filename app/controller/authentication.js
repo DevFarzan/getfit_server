@@ -94,6 +94,8 @@ exports.signin = function(req, res, next){
   //we just need to give them a token
   console.log('api hit')
   let specific_User_Profile = [];
+  let trainnySpecificProfile = [];
+  let trainnerSpecificProfile= [];
   var useremail = req.body.email;
   var password = req.body.password;
   //console.log(useremail)
@@ -101,7 +103,25 @@ exports.signin = function(req, res, next){
     if(user){
       //onsole.log(user,'database user');
       //const user = this;
-       
+      if(user.type == 'trainny'){
+        console.log('trainny');
+        profile.find({"userId":user.trainnerId},function(err,trainnerProfile){
+          if(err){}
+          else if(trainnerProfile){
+            trainnerSpecificProfile = trainnerProfile
+          }
+        })
+      } 
+      else if(user.type == 'trainner'){
+        console.log('trainner');
+        profile.find({"userId":user.tainnyId},function(err,trainnyProfile){
+          if(err){res.send('error',err)}
+          else if(trainnyProfile){
+            trainnySpecificProfile = trainnyProfile
+            //res.send('checking')
+          }
+        })
+      }
       profile.find({"userId":user._id},function(err,specificUserProfile){
         if(err){
           specific_User_Profile = err;
@@ -123,6 +143,8 @@ exports.signin = function(req, res, next){
             tainnyId:user.tainnyId,
             trainnerId:user.trainnerId,
             profile:specific_User_Profile,
+            trainnyProfiledata:trainnySpecificProfile,
+            trainnerProfileData:trainnerSpecificProfile,
             code:200,
             //username:user.firstName +''+ user.lastName
           });

@@ -109,6 +109,43 @@ exports.signin = function(req, res, next){
           if(err){}
           else if(trainnerProfile){
             trainnerSpecificProfile = trainnerProfile
+            profile.find({"userId":user._id},function(err,specificUserProfile){
+              if(err){
+                specific_User_Profile = err;
+              }
+              else if(specificUserProfile){
+                //console.log(specificUserProfile)
+                specific_User_Profile = specificUserProfile;
+                bcrypt.compare(password, user.password, function(err, isMatch){
+                  if(err){ return callback(err); }
+                  //callback(null, isMatch);
+                  if(isMatch){
+                    res.send({
+                  token: tokenForUser(user),
+                  _id:user._id,
+                  email:user.email,
+                  name:user.name,
+                  assignTrainner:user.assignTrainner,
+                  assignTrainny:user.assignTrainny,
+                  tainnyId:user.tainnyId,
+                  trainnerId:user.trainnerId,
+                  profile:specific_User_Profile,
+                  trainnyProfiledata:trainnySpecificProfile,
+                  trainnerProfileData:trainnerSpecificProfile,
+                  code:200,
+                  //username:user.firstName +''+ user.lastName
+                });
+                  }
+                  else if(!isMatch){
+                    res.send({
+                      msg:'password not match',
+                      Match:isMatch
+                    })
+                  }
+                  //console.log(isMatch);
+                })
+              }
+            })
           }
         })
       } 
@@ -118,49 +155,47 @@ exports.signin = function(req, res, next){
           if(err){res.send('error',err)}
           else if(trainnyProfile){
             trainnySpecificProfile = trainnyProfile
+            profile.find({"userId":user._id},function(err,specificUserProfile){
+              if(err){
+                specific_User_Profile = err;
+              }
+              else if(specificUserProfile){
+                //console.log(specificUserProfile)
+                specific_User_Profile = specificUserProfile;
+                bcrypt.compare(password, user.password, function(err, isMatch){
+                  if(err){ return callback(err); }
+                  //callback(null, isMatch);
+                  if(isMatch){
+                    res.send({
+                  token: tokenForUser(user),
+                  _id:user._id,
+                  email:user.email,
+                  name:user.name,
+                  assignTrainner:user.assignTrainner,
+                  assignTrainny:user.assignTrainny,
+                  tainnyId:user.tainnyId,
+                  trainnerId:user.trainnerId,
+                  profile:specific_User_Profile,
+                  trainnyProfiledata:trainnySpecificProfile,
+                  trainnerProfileData:trainnerSpecificProfile,
+                  code:200,
+                  //username:user.firstName +''+ user.lastName
+                });
+                  }
+                  else if(!isMatch){
+                    res.send({
+                      msg:'password not match',
+                      Match:isMatch
+                    })
+                  }
+                  //console.log(isMatch);
+                })
+              }
+            })
             //res.send('checking')
           }
         })
       }
-      profile.find({"userId":user._id},function(err,specificUserProfile){
-        if(err){
-          specific_User_Profile = err;
-        }
-        else if(specificUserProfile){
-          //console.log(specificUserProfile)
-          specific_User_Profile = specificUserProfile;
-          bcrypt.compare(password, user.password, function(err, isMatch){
-            if(err){ return callback(err); }
-            //callback(null, isMatch);
-            if(isMatch){
-              res.send({
-            token: tokenForUser(user),
-            _id:user._id,
-            email:user.email,
-            name:user.name,
-            assignTrainner:user.assignTrainner,
-            assignTrainny:user.assignTrainny,
-            tainnyId:user.tainnyId,
-            trainnerId:user.trainnerId,
-            profile:specific_User_Profile,
-            trainnyProfiledata:trainnySpecificProfile,
-            trainnerProfileData:trainnerSpecificProfile,
-            code:200,
-            //username:user.firstName +''+ user.lastName
-          });
-            }
-            else if(!isMatch){
-              res.send({
-                msg:'password not match',
-                Match:isMatch
-              })
-            }
-            //console.log(isMatch);
-          })
-        }
-      })
-     
-
     }
   })
 }

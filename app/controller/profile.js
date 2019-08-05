@@ -25,7 +25,8 @@ exports.userProfilePost = function(req, res, next){
         address:address,
         contactNo:contactNo,
         gender:gender,
-        image:image
+        image:image,
+        name:name
     })
 
     profile_info.save(function(err,dataProfile){

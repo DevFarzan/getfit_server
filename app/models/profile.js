@@ -10,7 +10,8 @@ const profileSchema = new Schema({
     address:{type:String},
     contactNo:{type:String},
     gender:{type:String},
-    image:{type:String}
+    image:{type:String},
+    name:{type:String},
 })
 
 //model class

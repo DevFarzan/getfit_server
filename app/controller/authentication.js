@@ -175,6 +175,7 @@ exports.signin = function(req, res, next){
                   assignTrainny:user.assignTrainny,
                   tainnyId:user.tainnyId,
                   trainnerId:user.trainnerId,
+                  type:user.type,
                   profile:specific_User_Profile,
                   trainnyProfiledata:trainnySpecificProfile,
                   trainnerProfileData:trainnerSpecificProfile,

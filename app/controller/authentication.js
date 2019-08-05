@@ -103,7 +103,7 @@ exports.signin = function(req, res, next){
     if(user){
       //onsole.log(user,'database user');
       //const user = this;
-      if(user.type == 'trainny'){
+      if(user.type == 'trainee'){
         console.log('trainny');
         profile.find({"userId":user.trainnerId},function(err,trainnerProfile){
           if(err){}

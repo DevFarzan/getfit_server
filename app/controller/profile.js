@@ -15,6 +15,8 @@ exports.userProfilePost = function(req, res, next){
     const gender = req.body.gender;
     const image = req.body.image;
 
+    console.log(objectId,'ooooooooooo');
+    console.log(profileObj,'ppppppppppp');
 
     if(objectId == '' || objectId == undefined){
     const profile_info = new profile({
@@ -47,14 +49,16 @@ exports.userProfilePost = function(req, res, next){
     })
 }
 else if(objectId != '' || objectId != undefined){
+    console.log('hit app')
     profile.updateMany(
         {"_id":objectId},
-        {$set: _.omit(profileObj, '_id')},
+        {$set: profileObj},
         {multi:true}
-    ).then(() => {
+    ).then((response) => {
         res.send({
             code:200,
-            data:'profile data updated successfully'
+            msg:'profile data updated successfully',
+            content:profileObj
         });
     }).catch(() => res.status(422).send({msg:'okay'}));
 }

@@ -12,6 +12,7 @@ const profileSchema = new Schema({
     gender:{type:String},
     image:{type:String},
     name:{type:String},
+    
 })
 
 //model class

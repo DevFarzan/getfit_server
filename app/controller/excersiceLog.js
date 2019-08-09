@@ -82,6 +82,7 @@ exports.weightPostLog = function(req,res,next){
     const thigh = req.body.thigh;
     const waist = req.body.waist;
     const year = req.body.year;
+    const dayOfWeek = req.body.dayOfWeek;
 
     //console.log(userId,+''+day)
     const weightLog_info = new weightdata({
@@ -98,7 +99,8 @@ exports.weightPostLog = function(req,res,next){
         shoulder:shoulder,
         thigh:thigh,
         waist:waist,
-        year:year
+        year:year,
+        dayOfWeek:dayOfWeek
     });
     
     weightLog_info.save(function(err,dataweight){

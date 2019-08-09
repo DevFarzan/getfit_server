@@ -17,6 +17,7 @@ const weightSchema = new Schema({
     thigh:{type:String},
     waist:{type:String},
     year:{type:Number},
+    dayOfWeek:{type:Number},
 })
 
 //model class

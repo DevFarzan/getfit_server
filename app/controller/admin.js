@@ -93,7 +93,8 @@ exports.createAdminUser = function(req, res, next){
       }
       else if(saveUser){
         res.send({
-          
+          code:200
+
         })
       }
     })

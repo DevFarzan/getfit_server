@@ -66,3 +66,38 @@ exports.updateUser = function (req, res, next){
   console.log(trainnerName,+''+trainnyName,+''+trainnerId,+''+trainnyId);
   res.send({he:'heloo'})
 }
+
+
+exports.createAdminUser = function(req, res, next){
+  const userObj = req.body;
+  User.findOne({email:userObj.email},function(err,existingUser){
+    if(err){
+      return next(err);
+    }
+    //if user is exist, return error
+    if(existingUser){
+      return res.status(422).send({error:'email in use'});
+    }
+    const user = new User({
+      email:userObj.email,
+      password:userObj.password,
+      mobileNo:userObj.mobileNo,
+      name:userObj.name,
+      verified:userObj.verified,
+      blocked:userObj.blocked,
+      type:userObj.type
+    });
+    user.save(function(err,saveUser){
+      if(err){
+        return next(err);
+      }
+      else if(saveUser){
+        res.send({
+          
+        })
+      }
+    })
+  })
+  res.send(userObj)
+  //console.log(userObj,'admin user object');
+}

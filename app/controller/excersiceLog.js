@@ -67,6 +67,7 @@ exports.getAllLogData = function(req,res,next){
 
 exports.weightPostLog = function(req,res,next){
     
+    
     const userId = req.body.userId;
     const day = req.body.day;
     const month = req.body.month;
@@ -74,8 +75,15 @@ exports.weightPostLog = function(req,res,next){
     const weight = req.body.weight;
     const date = req.body.date;
     const dayOfMonth = req.body.dayOfMonth;
+    const biceps = req.body.biceps;
+    const chest = req.body.chest;
+    const neck = req.body.neck;
+    const shoulder = req.body.shoulder;
+    const thigh = req.body.thigh;
+    const waist = req.body.waist;
+    const year = req.body.year;
 
-    console.log(userId,+''+day)
+    //console.log(userId,+''+day)
     const weightLog_info = new weightdata({
         day:day,
         month:month,
@@ -83,7 +91,14 @@ exports.weightPostLog = function(req,res,next){
         date:date,
         time:time,
         userId:userId,
-        dayOfMonth:dayOfMonth
+        dayOfMonth:dayOfMonth,
+        biceps:biceps,
+        chest:chest,
+        neck:neck,
+        shoulder:shoulder,
+        thigh:thigh,
+        waist:waist,
+        year:year
     });
     
     weightLog_info.save(function(err,dataweight){

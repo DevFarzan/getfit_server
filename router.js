@@ -35,5 +35,5 @@ app.get('/getuser',admin.getAllUser);
 app.get('/gettrainner',admin.getTrainner);
 app.get('/gettrainny',admin.getTrainny);
 app.post('/updateuser',cors(),admin.updateUser);
-
+app.post('/adminuser', cors(),admin.createAdminUser);
 }

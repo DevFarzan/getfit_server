@@ -4,6 +4,7 @@ const admin = require('./app/controller/admin');
 const exerciseLog = require('./app/controller/excersiceLog');
 const profile = require('./app/controller/profile');
 const bmiPostData = require('./app/controller/bmilogs');
+const stripeKeysDev = require('./app/controller/payments');
 //const macroPost = require('./app/controller/')
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session:false });
@@ -27,7 +28,8 @@ app.post('/macrodata',exerciseLog.macrosPostCalculater);
 //get routes
 app.get('/getuseremail',Authentication.getemail);
 app.get('/getallexerciselog',exerciseLog.getAllLogData);
-app.get('/getweightlog',exerciseLog.getWeightLog)
+app.get('/getweightlog',exerciseLog.getWeightLog);
+app.get('/keys',stripeKeysDev.stripeKeys);
 
 
 //admin routes
@@ -36,4 +38,6 @@ app.get('/gettrainner',admin.getTrainner);
 app.get('/gettrainny',admin.getTrainny);
 app.post('/updateuser',cors(),admin.updateUser);
 app.post('/adminuser', cors(),admin.createAdminUser);
+app.post('/getuserbyemail', cors(), admin.getUserByEmail);
+app.get('/getemailadmin', admin.getemailadmin);
 }

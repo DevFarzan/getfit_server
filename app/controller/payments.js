@@ -10,7 +10,21 @@ res.send({
 })
 }
 
-exports.stripeCharge = function(req, res, next){
+exports.stripeCharge = async function(req, res, next){
   let data = req.body;
-  console.log(body,'stripe data');
+  console.log(data,'stripe data');
+  
+  //console.log(data.name, data.email, data.amount, 'sab k sab')
+  try {
+    let {status} = await stripe.charges.create({
+      amount: Math.round(data.amount*100),
+      currency: data.currency,
+      description: "An example charge",
+      source: data.token
+    });
+    res.json({status});
+  } catch (err) {
+    console.log(err,'eeeeerrrrrrrr')
+    res.status(500).end();
+  }
 }

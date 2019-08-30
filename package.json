@@ -9,6 +9,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.12.0",
+    "cloudinary": "^1.14.0",
     "compression": "~1.4.1",
     "connect-busboy": "0.0.2",
     "cookie-parser": "~1.3.3",
@@ -23,6 +24,7 @@
     "mongoose": "^5.4.17",
     "mongoose-unique-validator": "~0.4.1",
     "morgan": "~1.5.0",
+    "multer": "^1.4.2",
     "nodemailer": "^0.7.1",
     "passport": "^0.2.2",
     "passport-jwt": "^4.0.0",

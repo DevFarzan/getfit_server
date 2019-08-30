@@ -74,18 +74,18 @@ exports.updateUser = function (req, res, next){
 }
 
 
-exports.createAdminUser = function(req, res, next){
+exports.changeStatusByAdmin = function(req, res, next){
   const userObj = req.body;
- console.log(userObj)
+ console.log(userObj,'checking admin');
  User.updateOne(
   {"_id":userObj.id},
-  {$set: profileObj},
+  {$set: {"type": userObj.type}},
   {multi:true}
 ).then((response) => {
   res.send({
       code:200,
       msg:'profile data updated successfully',
-      content:profileObj
+      content:response
   });
 }).catch(() => res.status(422).send({msg:'okay'}));
 }

@@ -14,7 +14,10 @@ exports.uploadImage = (upload.single('fileData'), (req, res,next) => {
      console.log('Error: ', err);
     }else{
      console.log('File contents ',contents);
-     
+     res.send({
+         file:contents,
+         objectFile:req.file
+     })
     }
    });
   });

@@ -26,7 +26,7 @@ app.post('/profile',profile.userProfilePost);
 app.post('/bmilogs', cors(), bmiPostData.bmiLogData);
 app.post('/macrodata',exerciseLog.macrosPostCalculater);
 app.post('/payment',cors(),stripeKeysDev.stripeCharge);
-app.post('/imageupload', cors(), cloudinaryProcess.uploadImage);
+//app.post('/imageupload', cors(), cloudinaryProcess.uploadImage);
 
 //get routes
 app.get('/getuseremail',Authentication.getemail);

@@ -39,7 +39,7 @@ app.use(cookieParser());
 //Connecting database
 
 var configDB = require('./config/database.js');
-mongoose.connect(configDB.EvenNodeDB, { useNewUrlParser:true });
+mongoose.connect(configDB.EvenNodeDB);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Database connection failed:'));

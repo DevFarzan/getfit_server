@@ -103,6 +103,31 @@ exports.signin = function(req, res, next){
     if(user){
       //onsole.log(user,'database user');
       //const user = this;
+      if((user.trainnerId == undefined || user.trainnerId == null)){
+        bcrypt.compare(password, user.password, function(err, isMatch){
+          if(err){ return callback(err); }
+          //callback(null, isMatch);
+          if(isMatch){
+            res.send({
+          token: tokenForUser(user),
+          _id:user._id,
+          email:user.email,
+          name:user.name,
+          type:user.type,
+          code:200,
+          //username:user.firstName +''+ user.lastName
+        });
+          }
+          else if(!isMatch){
+            res.send({
+              msg:'password not match',
+              Match:isMatch
+            })
+          }
+          //console.log(isMatch);
+        })
+      }
+      else{
       if(user.type == 'trainee'){
         console.log('trainny');
         profile.find({"userId":user.trainnerId},function(err,trainnerProfile){
@@ -150,6 +175,7 @@ exports.signin = function(req, res, next){
           }
         })
       } 
+    
       else if(user.type == 'trainner'){
         console.log('trainner');
         profile.find({"userId":user.tainnyId},function(err,trainnyProfile){
@@ -199,7 +225,9 @@ exports.signin = function(req, res, next){
         })
       }
     }
+    }
   })
+
 }
 exports.comparePassword = function(req, res, next){
   currentpassword = req.body.password;

@@ -26,6 +26,7 @@ app.post('/profile',profile.userProfilePost);
 app.post('/bmilogs', cors(), bmiPostData.bmiLogData);
 app.post('/macrodata',exerciseLog.macrosPostCalculater);
 app.post('/payment',cors(),stripeKeysDev.stripeCharge);
+app.post('/otherpayment', cors(), stripeKeysDev.otherpaymentmethod);
 //app.post('/imageupload', cors(), cloudinaryProcess.uploadImage);
 
 //get routes
@@ -43,4 +44,5 @@ app.post('/updateuser',cors(),admin.updateUser);
 app.post('/adminuser', cors(),admin.changeStatusByAdmin);
 app.post('/getuserbyemail', cors(), admin.getUserByEmail);
 app.get('/getemailadmin', admin.getemailadmin);
+app.post('/block', cors(), admin.blockuser);
 }

@@ -132,3 +132,49 @@ exports.getemailadmin = function(req,res,next){
     }
   })
 }
+
+exports.blockuser = function(req,res,next){
+  var useremail = req.body.email;
+  var status = req.body.status;
+  const keyValue = req.body.key;
+  const tempKey = JSON.stringify(keyValue);
+  
+  //console.log(tempKey);
+  console.log(status,'emmmmmaaaaiiilllll');
+   User.find({"email":useremail}, function(err,data){
+      if(err){
+        return res.status(422).send({error:'something went wrong'})
+      }
+      else if(data){
+        //var keyValue = req.body.key;
+        if(keyValue == 'blocked'){
+          console.log('checking valueeeeee')
+        User.updateOne(
+          {"email":useremail},
+          {$set: {"blocked": status}},
+          {multi:true}
+        ).then((response) => {
+          res.send({
+              code:200,
+              msg:'User data updated successfully',
+              content:response
+          });
+        }).catch(() => res.status(422).send({msg:'okay'}));
+      }
+      else if(keyValue == 'verified'){
+        console.log(keyValue,'hitttttt');
+        User.updateOne(
+          {"email":useremail},
+          {$set: {"verified": status}},
+          {multi:true}
+        ).then((response) => {
+          res.send({
+              code:200,
+              msg:'User data updated successfully',
+              content:response
+          });
+        }).catch(() => res.status(422).send({msg:'okay'}));
+      }
+    }
+   })
+}

@@ -16,6 +16,7 @@ require('./app/models/weightLog');
 require('./app/models/profile');
 require('./app/models/bmilogs');
 require('./app/models/macros');
+require('./app/models/payment');
 
 //cors assigment
 app.options('*', cors())

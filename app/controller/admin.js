@@ -72,14 +72,19 @@ exports.updateUser = function (req, res, next){
   console.log(trainnerName,+''+trainnyName,+''+trainnerId,+''+trainnyId);
   //res.send({he:'heloo'})
   User.updateMany({"_id":trainnyId},
-  {$set: {"trainnerId":trainnerId,"assignTrainner":trainnerName}},
-  {multi:true}).then((response) =>{
+  {$set: {"trainnerId":trainnerId,"assignTrainner":trainnerName}}).then((response) =>{
+    
+  }).catch(() => res.status(422).send({msg:'okay'}));
+
+  User.updateMany({"_id":trainnerId},
+  {$push: {"tainnyId":trainnyId,"assignTrainny":trainnyName}}).then((response) =>{
     res.send({
       code:200,
       msg:'trainner is successfully assign',
       content:response
     })
   }).catch(() => res.status(422).send({msg:'okay'}));
+
 }
 
 

@@ -104,6 +104,7 @@ exports.signin = function(req, res, next){
       //onsole.log(user,'database user');
       //const user = this;
       if(user.type == 'trainee'){
+
         if((user.trainnerId == undefined || user.trainnerId == null)){
         bcrypt.compare(password, user.password, function(err, isMatch){
           if(err){ return callback(err); }
@@ -128,34 +129,9 @@ exports.signin = function(req, res, next){
           //console.log(isMatch);
         })
       }
-    }
-    else if(user.type == 'trainner'){
-      if((user.tainnyId == undefined || user.tainnyId == null)){
-        bcrypt.compare(password, user.password, function(err, isMatch){
-          if(err){ return callback(err); }
-          //callback(null, isMatch);
-          if(isMatch){
-            res.send({
-          token: tokenForUser(user),
-          _id:user._id,
-          email:user.email,
-          name:user.name,
-          type:user.type,
-          code:200,
-          //username:user.firstName +''+ user.lastName
-        });
-          }
-          else if(!isMatch){
-            res.send({
-              msg:'password not match',
-              Match:isMatch
-            })
-          }
-          //console.log(isMatch);
-        })
-      }
-    }
+
       else{
+        console.log('check')
       if(user.type == 'trainee'){
         console.log('trainny');
         profile.find({"userId":user.trainnerId},function(err,trainnerProfile){
@@ -253,7 +229,144 @@ exports.signin = function(req, res, next){
         })
       }
     }
+  }
+  else if(user.type == 'trainner'){
+    if((user.tainnyId == undefined || user.tainnyId == null)){
+      bcrypt.compare(password, user.password, function(err, isMatch){
+        if(err){ return callback(err); }
+        //callback(null, isMatch);
+        if(isMatch){
+          res.send({
+        token: tokenForUser(user),
+        _id:user._id,
+        email:user.email,
+        name:user.name,
+        type:user.type,
+        code:200,
+        //username:user.firstName +''+ user.lastName
+      });
+        }
+        else if(!isMatch){
+          res.send({
+            msg:'password not match',
+            Match:isMatch
+          })
+        }
+        //console.log(isMatch);
+      })
     }
+    else{
+      console.log('check')
+    if(user.type == 'trainee'){
+      console.log('trainny');
+      profile.find({"userId":user.trainnerId},function(err,trainnerProfile){
+        if(err){}
+        else if(trainnerProfile){
+          trainnerSpecificProfile = trainnerProfile
+          profile.find({"userId":user._id},function(err,specificUserProfile){
+            if(err){
+              specific_User_Profile = err;
+            }
+            else if(specificUserProfile){
+              //console.log(specificUserProfile)
+              specific_User_Profile = specificUserProfile;
+              bcrypt.compare(password, user.password, function(err, isMatch){
+                if(err){ return callback(err); }
+                //callback(null, isMatch);
+                if(isMatch){
+                  res.send({
+                token: tokenForUser(user),
+                _id:user._id,
+                email:user.email,
+                name:user.name,
+                assignTrainner:user.assignTrainner,
+                assignTrainny:user.assignTrainny,
+                tainnyId:user.tainnyId,
+                type:user.type,
+                trainnerId:user.trainnerId,
+                profile:specific_User_Profile,
+                trainnyProfiledata:trainnySpecificProfile,
+                trainnerProfileData:trainnerSpecificProfile,
+                code:200,
+                //username:user.firstName +''+ user.lastName
+              });
+                }
+                else if(!isMatch){
+                  res.send({
+                    msg:'password not match',
+                    Match:isMatch
+                  })
+                }
+                //console.log(isMatch);
+              })
+            }
+          })
+        }
+      })
+    } 
+  
+    else if(user.type == 'trainner'){
+      console.log('trainner');
+      for(var i=0;i<(user.tainnyId).length;i++){
+        console.log(user.tainnyId[i],'checkingggggggg')
+        profile.find({"userId":user.tainnyId[i]}, function(err,trainnyProfile){
+          if(err){res.send('error',err)}
+          else if(trainnyProfile){
+            console.log(trainnyProfile)
+             trainnySpecificProfile.push(trainnyProfile)
+          }
+        })
+      }
+      // profile.find({"userId":user.tainnyId},function(err,trainnyProfile){
+      //   if(err){res.send('error',err)}
+      //   else if(trainnyProfile){
+      //     trainnySpecificProfile = trainnyProfile
+          profile.find({"userId":user._id},function(err,specificUserProfile){
+            if(err){
+              specific_User_Profile = err;
+            }
+            else if(specificUserProfile){
+              //console.log(specificUserProfile)
+              specific_User_Profile = specificUserProfile;
+              bcrypt.compare(password, user.password, function(err, isMatch){
+                if(err){ return callback(err); }
+                //callback(null, isMatch);
+                if(isMatch){
+                  res.send({
+                token: tokenForUser(user),
+                _id:user._id,
+                email:user.email,
+                name:user.name,
+                assignTrainner:user.assignTrainner,
+                assignTrainny:user.assignTrainny,
+                tainnyId:user.tainnyId,
+                trainnerId:user.trainnerId,
+                type:user.type,
+                profile:specific_User_Profile,
+                trainnyProfiledata:trainnySpecificProfile,
+                trainnerProfileData:trainnerSpecificProfile,
+                code:200,
+                //username:user.firstName +''+ user.lastName
+              });
+                }
+                else if(!isMatch){
+                  res.send({
+                    msg:'password not match',
+                    Match:isMatch
+                  })
+                }
+                //console.log(isMatch);
+              })
+            }
+          })
+          //res.send('checking')
+        }
+      //})
+    //}
+  }
+  }
+    }
+  
   })
 
 }

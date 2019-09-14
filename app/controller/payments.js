@@ -41,7 +41,7 @@ exports.stripeCharge = async function(req, res, next){
       paid:charge.paid,
       status:charge.status
     })
-    if(stripeResponse == "succeeded"){
+    if(stripeResponse.status == "succeeded"){
       const paymentFinalModal = new paymentModel({
           name: data.name,
          email: data.email,

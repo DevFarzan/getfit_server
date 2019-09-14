@@ -71,6 +71,15 @@ exports.updateUser = function (req, res, next){
   const trainnyId = req.body.trainnyId;
   console.log(trainnerName,+''+trainnyName,+''+trainnerId,+''+trainnyId);
   //res.send({he:'heloo'})
+  User.updateMany({"_id":trainnyId},
+  {$set: {"trainnerId":trainnerId,"assignTrainner":trainnerName}},
+  {multi:true}).then((response) =>{
+    res.send({
+      code:200,
+      msg:'trainner is successfully assign',
+      content:response
+    })
+  }).catch(() => res.status(422).send({msg:'okay'}));
 }
 
 

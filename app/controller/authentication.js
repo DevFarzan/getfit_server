@@ -103,7 +103,8 @@ exports.signin = function(req, res, next){
     if(user){
       //onsole.log(user,'database user');
       //const user = this;
-      if((user.trainnerId == undefined || user.trainnerId == null)){
+      if(user.type == 'trainee'){
+        if((user.trainnerId == undefined || user.trainnerId == null)){
         bcrypt.compare(password, user.password, function(err, isMatch){
           if(err){ return callback(err); }
           //callback(null, isMatch);
@@ -127,6 +128,33 @@ exports.signin = function(req, res, next){
           //console.log(isMatch);
         })
       }
+    }
+    else if(user.type == 'trainner'){
+      if((user.trainnyId == undefined || user.trainnyId == null)){
+        bcrypt.compare(password, user.password, function(err, isMatch){
+          if(err){ return callback(err); }
+          //callback(null, isMatch);
+          if(isMatch){
+            res.send({
+          token: tokenForUser(user),
+          _id:user._id,
+          email:user.email,
+          name:user.name,
+          type:user.type,
+          code:200,
+          //username:user.firstName +''+ user.lastName
+        });
+          }
+          else if(!isMatch){
+            res.send({
+              msg:'password not match',
+              Match:isMatch
+            })
+          }
+          //console.log(isMatch);
+        })
+      }
+    }
       else{
       if(user.type == 'trainee'){
         console.log('trainny');

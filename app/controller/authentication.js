@@ -130,7 +130,7 @@ exports.signin = function(req, res, next){
       }
     }
     else if(user.type == 'trainner'){
-      if((user.trainnyId == undefined || user.trainnyId == null)){
+      if((user.tainnyId == undefined || user.tainnyId == null)){
         bcrypt.compare(password, user.password, function(err, isMatch){
           if(err){ return callback(err); }
           //callback(null, isMatch);

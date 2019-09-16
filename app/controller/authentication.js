@@ -89,7 +89,7 @@ exports.getemail = function(req,res,next){
     }
   })
 }
-exports.signin = function(req, res, next){
+exports.signin = async (req, res, next) => {
   //user has already had their email and password auth'd
   //we just need to give them a token
   console.log('api hit')
@@ -309,11 +309,11 @@ exports.signin = function(req, res, next){
       console.log('trainner');
       for(var i=0;i<(user.tainnyId).length;i++){
         console.log(user.tainnyId[i],'checkingggggggg')
-        profile.find({"userId":user.tainnyId[i]}, function(err,trainnyProfile){
+         profile.find({"userId":{$in:user.tainnyId[i]}}, function(err,trainnyProfile){
           if(err){res.send('error',err)}
           else if(trainnyProfile){
             console.log(trainnyProfile)
-             trainnySpecificProfile.push(trainnyProfile)
+               trainnySpecificProfile.push(trainnyProfile)
           }
         })
       }

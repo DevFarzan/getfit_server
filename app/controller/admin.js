@@ -196,8 +196,8 @@ exports.blockuser = function(req,res,next){
 
 
 exports.invoices = function(req,res,next){
-  //let userId = req.body.userId;
-     let userId = '5d26e864b67ae70017a0f41f'; 
+  let userId = req.body.userId;
+     //let userId = '5d26e864b67ae70017a0f41f'; 
   paymentModel.find({"userId":userId},function(err,invoiceData){
     if(err){
       res,send({

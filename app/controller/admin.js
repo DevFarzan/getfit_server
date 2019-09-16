@@ -65,7 +65,7 @@ exports.getTrainny = function(req, res, next){
 }
 
 exports.updateUser = function (req, res, next){
-  console.log(req.body)
+  console.log(req.body);
   const trainnerName = req.body.trainnerName;
   const trainnyName  = req.body.trainnyName;
   const trainnerId = req.body.trainnerId;

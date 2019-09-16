@@ -3,37 +3,25 @@ const profile = mongoose.model('userProfile');
 
 
 exports.userProfilePost = function(req, res, next){
-
-    const objectId = req.body.objectId;
-    const profileObj = req.body;
-    const userId = req.body.userId;
-    const date = req.body.date;
-    const time = req.body.time;
-    const email = req.body.email;
-    const address = req.body.address;
-    const contactNo = req.body.contactNo;
-    const gender = req.body.gender;
-    const image = req.body.image;
-    const type = req.body.type;
-
-    //console.log(objectId,'ooooooooooo');
-    //console.log(profileObj,'ppppppppppp');
-
-    if(objectId == '' || objectId == undefined){
-    const profile_info = new profile({
-        userId:userId,
-        date:date,
-        time:time,
-        email:email,
-        address:address,
-        contactNo:contactNo,
-        gender:gender,
-        image:image,
-        name:name,
-        type:type
+       
+    if(objectId == "" || objectId == undefined){
+        console.log("api hit2")
+        //console.log(req.body,'asdasdasds')
+    const profiledata = new profile({
+        userId:req.body.userId,
+        date:req.body.date,
+        time:req.body.time,
+        email:req.body.email,
+        address:req.body.address,
+        contactNo:req.body.contactNo,
+        gender:req.body.gender,
+        image:req.body.image,
+        name:req.body.name,
+        type:req.body.type,
     })
 
-    profile_info.save(function(err,dataProfile){
+profiledata.save(function(err,dataProfile){
+        console.log(dataProfile)
         if(err){
             res.send({
                 code:404,
@@ -42,6 +30,7 @@ exports.userProfilePost = function(req, res, next){
             })
         }
         else if(dataProfile){
+            console.log(dataProfile)
             res.send({
                 code:200,
                 msg:'data is inserted',
@@ -50,8 +39,8 @@ exports.userProfilePost = function(req, res, next){
         }
     })
 }
-else if(objectId != '' || objectId != undefined){
-    console.log('hit app')
+else if(objectId != "" || objectId != undefined){
+    console.log('hit app3')
     profile.updateMany(
         {"_id":objectId},
         {$set: profileObj},

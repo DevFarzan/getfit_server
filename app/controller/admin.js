@@ -1,6 +1,7 @@
 const User = mongoose.model('user');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jwt-simple');
+const paymentModel = mongoose.model('payment');
 //creating token for user or through user.id
 function tokenForUser(user){
   console.log(user,'tokennnnnnn')
@@ -191,4 +192,35 @@ exports.blockuser = function(req,res,next){
       }
     }
    })
+}
+
+
+exports.invoices = function(req,res,next){
+  //let userId = req.body.userId;
+     let userId = '5d26e864b67ae70017a0f41f'; 
+  paymentModel.find({"userId":userId},function(err,invoiceData){
+    if(err){
+      res,send({
+        code:404,
+        msg:'Something went wrong in API request'
+      })
+    }
+    else if(invoiceData){
+      //res.send(invoiceData)
+      if(invoiceData.length == 0){
+        res.send({
+          code:200,
+          msg:'No invoice found for current user',
+          content:invoiceData
+        })
+      }
+      else if(invoiceData.length > 0){
+        res.send({
+          code:200,
+          msg:'Invoice for current user',
+          content:invoiceData
+        })
+      }
+    }
+  })
 }

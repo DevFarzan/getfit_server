@@ -14,9 +14,10 @@ exports.userProfilePost = function(req, res, next){
     const contactNo = req.body.contactNo;
     const gender = req.body.gender;
     const image = req.body.image;
+    const type = req.body.type;
 
-    console.log(objectId,'ooooooooooo');
-    console.log(profileObj,'ppppppppppp');
+    //console.log(objectId,'ooooooooooo');
+    //console.log(profileObj,'ppppppppppp');
 
     if(objectId == '' || objectId == undefined){
     const profile_info = new profile({
@@ -28,7 +29,8 @@ exports.userProfilePost = function(req, res, next){
         contactNo:contactNo,
         gender:gender,
         image:image,
-        name:name
+        name:name,
+        type:type
     })
 
     profile_info.save(function(err,dataProfile){

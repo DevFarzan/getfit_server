@@ -45,4 +45,5 @@ app.post('/adminuser', cors(),admin.changeStatusByAdmin);
 app.post('/getuserbyemail', cors(), admin.getUserByEmail);
 app.get('/getemailadmin', admin.getemailadmin);
 app.post('/block', cors(), admin.blockuser);
+app.post('/invoice', cors(), admin.invoices);
 }

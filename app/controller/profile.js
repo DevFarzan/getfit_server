@@ -3,7 +3,7 @@ const profile = mongoose.model('userProfile');
 
 
 exports.userProfilePost = function(req, res, next){
-       
+       var profileObj = req.body;
     if(req.body.objectId == "" || req.body.objectId == undefined){
         console.log("api hit2")
         //console.log(req.body,'asdasdasds')
@@ -39,10 +39,10 @@ profiledata.save(function(err,dataProfile){
         }
     })
 }
-else if(req.body.objectId != "" || req.body.objectId != undefined){
+else if(req.body.objectId != ""){
     console.log('hit app3')
     profile.updateMany(
-        {"_id":objectId},
+        {"_id":req.body.objectId},
         {$set: profileObj},
         {multi:true}
     ).then((response) => {

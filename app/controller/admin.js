@@ -1,6 +1,7 @@
 const User = mongoose.model('user');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jwt-simple');
+const profile = mongoose.model('userProfile');
 const paymentModel = mongoose.model('payment');
 //creating token for user or through user.id
 function tokenForUser(user){
@@ -221,6 +222,35 @@ exports.invoices = function(req,res,next){
           content:invoiceData
         })
       }
+    }
+  })
+}
+
+exports.userProfile = function(req, res, next){
+  //let userId = req.body.userId;
+  let userId = "d7cceff5dcbe400170d5cf0";
+  profile.find({"userId":userId},function(err,specificProfile){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(specificProfile.length != 0){
+      console.log(specificProfile.length != 0)
+      res.send({
+        code:200,
+        msg:'User Specific Profile',
+        content:specificProfile
+      })
+    }
+    else if(specificProfile.length == 0){
+      console.log(specificProfile.length == 0)
+      res.send({
+        code:200,
+        msg:'User not created profile yet',
+        content:specificProfile
+      })
     }
   })
 }

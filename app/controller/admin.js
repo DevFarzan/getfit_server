@@ -227,8 +227,9 @@ exports.invoices = function(req,res,next){
 }
 
 exports.userProfile = function(req, res, next){
-  //let userId = req.body.userId;
-  let userId = "d7cceff5dcbe400170d5cf0";
+  let userId = req.body.userId;
+  console.log(userId , 'userId')
+  // let userId = "d7cceff5dcbe400170d5cf0";
   profile.find({"userId":userId},function(err,specificProfile){
     if(err){
       res.send({

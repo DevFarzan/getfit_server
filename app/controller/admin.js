@@ -254,3 +254,34 @@ exports.userProfile = function(req, res, next){
     }
   })
 }
+
+exports.dashboardValue = function(req,res,next){
+  let Trainee = [];
+  let Trainnerdata = [];
+  User.find(function(err,userData){
+      if(err){
+        res.send({
+          code:404,
+          msg:'something went wrong',
+          content:[]
+        })
+      }
+      else if(userData){
+        for(var i=0;i<userData.length;i++){
+          if(userData[i].type == 'trainee'){
+            Trainee.push(userData[i].name);
+          }
+          else if(userData[i].type == 'trainner'){
+            Trainnerdata.push(userData[i].name);
+          }
+        }
+        res.send({
+          code:200,
+          msg:'All user Data',
+          totalUsers:userData.length,
+          totalTrainne:Trainee.length,
+          totalTrainner:Trainnerdata.length
+        })
+      }
+  })
+}

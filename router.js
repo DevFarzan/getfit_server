@@ -34,6 +34,7 @@ app.get('/getuseremail',Authentication.getemail);
 app.get('/getallexerciselog',exerciseLog.getAllLogData);
 app.get('/getweightlog',exerciseLog.getWeightLog);
 app.get('/keys',stripeKeysDev.stripeKeys);
+app.get('/getuserdetail',admin.dashboardValue);
 
 
 //admin routes

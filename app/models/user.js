@@ -10,6 +10,8 @@ const userSchema = new Schema({
   mobileNo:{type:String},
   verified:{type:Boolean},
   name:{type:String},
+  lastName:{type:String},
+  gender:{type:String},
   blocked:{type:Boolean},
   assignTrainner:{type:String},
   assignTrainny:{type:Array},

@@ -18,7 +18,8 @@ const userSchema = new Schema({
   type:{type:String},
   forgotPasswordRand:{type:String},
   resetPasswordToken:{type:String},
-  resetPasswordExpires:{type:String}
+  resetPasswordExpires:{type:String},
+  pedometer:{type:Boolean} 
 })
 
 

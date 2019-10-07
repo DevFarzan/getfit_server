@@ -35,6 +35,8 @@ exports.signup = function(req, res, next){
   const mobileNo = req.body.mobileNo;
   const verified = 'true';
   const name = req.body.name;
+  const lastName = req.body.lastName;
+  const gender = req.body.gender;
   const type = req.body.type;
   const blocked = 'false';
   console.log(email +''+ password +''+ mobileNo +''+verified);
@@ -55,6 +57,8 @@ exports.signup = function(req, res, next){
         password:password,
         mobileNo:mobileNo,
         name:name,
+        lastName:lastName,
+        gender:gender,
         verified:verified,
         blocked:blocked,
         type:type

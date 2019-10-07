@@ -18,6 +18,7 @@ require('./app/models/bmilogs');
 require('./app/models/macros');
 require('./app/models/payment');
 require('./app/models/pedometer');
+require('./app/models/setGoals');
 
 //cors assigment
 app.options('*', cors())

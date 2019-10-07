@@ -1,17 +1,22 @@
 const mongoose = require('mongoose')
-const pedometerModel = mongoose.model('pedometer');
+const setGoal = mongoose.model('fitnessGoal');
 
 
-exports.postpedometerdata = function(req,res,next){
-    var pedometerData = req.body;
-     const pedometerFinalModel = new pedometerModel({
-        userId:pedometerData.userId,
-        time:pedometerData.time,
-        date:pedometerData.date,
-        stepCount:pedometerData.stepCount,
-        dailGoal:pedometerData.dailGoal
+exports.createGoal = function(req,res,next){
+    let fitnessdata = req.body;
+    const fitnesGoalModel = new setGoal({
+        currentWeight:fitnessdata.currentWeight,
+        dob:fitnessdata.dob,
+        heightFit:fitnessdata.heightFit, 
+        heightInch:fitnessdata.heightInch,
+        heightCentimeter:fitnessdata.heightInch,
+        lose:fitnessdata.lose,
+        gain:fitnessdata.gain,
+        userId:fitnessdata.userId,
+        date:fitnessdata.date,
+        time:fitnessdata.time,
      })
-     pedometerFinalModel.save(function(err,successData){
+     fitnesGoalModel.save(function(err,successData){
          if(err){
              res.send({
                  code:404,
@@ -29,10 +34,9 @@ exports.postpedometerdata = function(req,res,next){
      })
 }
 
-
-exports.getpedometerdata = function(req,res,next){
-    var userId = req.body.userId;
-    pedometerModel.find({"userId":userId},function(err,successData){
+exports.getGoal = function(req,res,next){
+    let userId = req.body.userId;
+    setGoal.find({"userId":userId},function(err,successData){
         if(err){
             res.send({
                 code:404,
@@ -49,3 +53,4 @@ exports.getpedometerdata = function(req,res,next){
         }
     })
 }
+

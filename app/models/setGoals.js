@@ -12,7 +12,9 @@ const setGoal = new Schema({
      heightCentimeter:{type:String},
      lose:{type:String},
      gain:{type:String},
-     userId:{type:String}
+     userId:{type:String},
+     date:{type:String},
+     time:{type:String},
 })
 
 //model class

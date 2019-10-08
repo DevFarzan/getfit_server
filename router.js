@@ -7,6 +7,7 @@ const bmiPostData = require('./app/controller/bmilogs');
 const stripeKeysDev = require('./app/controller/payments');
 const pedometerDetail = require('./app/controller/pedometer');
 const setGoalFitness = require('./app/controller/setGoal');
+const emailtemplate = require('./app/controller/email');
 const cloudinaryProcess = require('./app/controller/cloudinarywidget');
 //const macroPost = require('./app/controller/')
 const passport = require('passport');
@@ -33,6 +34,7 @@ app.post('/pedometer', cors(), pedometerDetail.postpedometerdata);
 app.post('/getpedometerbyid',pedometerDetail.getpedometerdata);
 app.post('/postgoal', cors(), setGoalFitness.createGoal);
 app.post('/getgoal',cors(),setGoalFitness.getGoal);
+app.post('/email',cors(),emailtemplate.sendrequestemail);
 //app.post('/imageupload', cors(), cloudinaryProcess.uploadImage);
 
 //get routes

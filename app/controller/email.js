@@ -63,11 +63,11 @@ exports.sendrequestemail = function(req,res,next){
       smtpTransport.sendMail(mailOptions, function(error, response){
          if(error){
               console.log(error);
-        res.end("error");
+        res.send("error");
        }else{
               console.log("Message sent: " + response.message);
               console.log("Message sent: " + response.message);
-        res.end("sent");
+        res.send("sent");
            }
     });
 }

@@ -10,9 +10,9 @@ const exerciseSchema = new Schema({
     month:{type:String},
     year:{type:String},
     dayOfMonth:{type:String},
-    exerciseName:{type:String},
-    exerciseAmount:{type:String},
-    exerciseUnit:{type:String},
+    exerciseName:{type:Array},
+    exerciseAmount:{type:Object},
+    exerciseUnit:{type:Object},
 })
 
 //model class

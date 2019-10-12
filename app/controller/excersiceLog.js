@@ -5,12 +5,10 @@ const weightdata = mongoose.model('weightLog');
 const macros = mongoose.model('macrocalculater');
 
 exports.exerciseLogData = function(req, res, next){
-    const exerciseName = [];
-    const exerciseAmount = {};
-    const exerciseUnit = {};
- exerciseName = req.body.exerciseName;
- exerciseAmount = req.body.exerciseAmount;
- exerciseUnit = req.body.exerciseUnit;
+    
+ const exerciseName = req.body.exerciseName;
+ const exerciseAmount = req.body.exerciseAmount;
+ const exerciseUnit = req.body.exerciseUnit;
 const date = req.body.date;
 const time = req.body.time;
 const userId = req.body.userId;

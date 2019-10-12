@@ -59,15 +59,19 @@ exports.sendrequestemail = function(req,res,next){
     </body>
     </html>`
       }
-      console.log(mailOptions);
+      //console.log(mailOptions);
       smtpTransport.sendMail(mailOptions, function(error, response){
          if(error){
               console.log(error);
         res.send("error");
        }else{
-              console.log("Message sent: " + response.message);
-              console.log("Message sent: " + response.message);
-        res.send("sent");
+              //console.log("Message sent: " + response.message);
+              //console.log("Message sent: " + response.message);
+        res.send({
+            code:200,
+            msg:'email Sent to Admin',
+            status:'Sent'
+        });
            }
     });
 }

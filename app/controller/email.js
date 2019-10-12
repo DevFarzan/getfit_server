@@ -20,8 +20,8 @@ exports.sendrequestemail = function(req,res,next){
     let userCradential = req.body;
     //const name = 'user getfit'
     mailOptions={
-        to : 'farzanhanif123@gmail.com',
-        subject : "GetFit Application User Contact you",
+        to : 'awaisrehman424@gmail.com',
+        subject : `${userCradential.packageName}`,
         html : `<html>
         <div style="padding: 5vw;">
             <div style="text-align: center;">
@@ -32,7 +32,7 @@ exports.sendrequestemail = function(req,res,next){
                 <p>
                         Hello Admin,<br><br>
                         ${userCradential.name} is interested in your premium package. Connect with them and assign them a coach/trainer<br><br>
-                        <strong> User_Name contact info:</strong><br>
+                        <strong> ${userCradential.name} contact info:</strong><br>
                         - Email Id: ${userCradential.email}<br>
                         - Phone Number: ${userCradential.number}<br><br>
                         Thanks.

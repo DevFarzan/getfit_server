@@ -15,6 +15,8 @@ const setGoal = new Schema({
      userId:{type:String},
      date:{type:String},
      time:{type:String},
+     goalSteps:{type:String},
+     fitnessGoal:{type:String},
 })
 
 //model class

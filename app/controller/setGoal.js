@@ -7,6 +7,7 @@ exports.createGoal = function(req,res,next){
     const fitnesGoalModel = new setGoal({
         currentWeight:fitnessdata.currentWeight,
         dob:fitnessdata.dob,
+        goalSteps:fitnessdata.goalSteps,
         heightFit:fitnessdata.heightFit, 
         heightInch:fitnessdata.heightInch,
         heightCentimeter:fitnessdata.heightInch,
@@ -15,6 +16,7 @@ exports.createGoal = function(req,res,next){
         userId:fitnessdata.userId,
         date:fitnessdata.date,
         time:fitnessdata.time,
+        fitnessGoal:fitnessdata.fitnessGoal,
      })
      fitnesGoalModel.save(function(err,successData){
          if(err){

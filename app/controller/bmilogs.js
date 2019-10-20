@@ -42,3 +42,22 @@ exports.bmiLogData = function(req, res, next){
     })
 }
 
+
+exports.getBmiDataId = function(req,res,next){
+    let userId = req.body.userId;
+    bmidetail.find({"userId":userId},function(err,data){
+        if(err){
+            res.send({
+                code:404,
+                msg:'Something Wrong'
+            })
+        }
+        else if(data){
+            res.send({
+                code:200,
+                msg:'Specific BMI Data',
+                content:data
+            })
+        }
+    })
+}

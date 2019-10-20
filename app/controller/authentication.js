@@ -38,6 +38,7 @@ exports.signup = function(req, res, next){
   const lastName = req.body.lastName;
   const gender = req.body.gender;
   const type = req.body.type;
+  const deviceToken = req.body.deviceToken;
   const blocked = 'false';
   console.log(email +''+ password +''+ mobileNo +''+verified);
   if(!email || !password){
@@ -61,7 +62,8 @@ exports.signup = function(req, res, next){
         gender:gender,
         verified:verified,
         blocked:blocked,
-        type:type
+        type:type,
+        deviceToken:deviceToken
       });
       console.log(user,'checkingggggggg');
       user.save(function(err){
@@ -70,7 +72,7 @@ exports.signup = function(req, res, next){
       res.json({
         token:tokenForUser(user),
         _id:user._id,
-        code:200
+        code:200,
       });
     });
 }
@@ -121,6 +123,7 @@ exports.signin = async (req, res, next) => {
           name:user.name,
           type:user.type,
           code:200,
+          deviceToken:user.deviceToken || '',
           //username:user.firstName +''+ user.lastName
         });
           }
@@ -166,6 +169,7 @@ exports.signin = async (req, res, next) => {
                   profile:specific_User_Profile,
                   trainnyProfiledata:trainnySpecificProfile,
                   trainnerProfileData:trainnerSpecificProfile,
+                  deviceToken:user.deviceToken || '',
                   code:200,
                   //username:user.firstName +''+ user.lastName
                 });
@@ -214,6 +218,7 @@ exports.signin = async (req, res, next) => {
                   profile:specific_User_Profile,
                   trainnyProfiledata:trainnySpecificProfile,
                   trainnerProfileData:trainnerSpecificProfile,
+                  deviceToken:user.deviceToken || '',
                   code:200,
                   //username:user.firstName +''+ user.lastName
                 });
@@ -246,6 +251,7 @@ exports.signin = async (req, res, next) => {
         email:user.email,
         name:user.name,
         type:user.type,
+        deviceToken:user.deviceToken || '',
         code:200,
         //username:user.firstName +''+ user.lastName
       });
@@ -291,6 +297,7 @@ exports.signin = async (req, res, next) => {
                 profile:specific_User_Profile,
                 trainnyProfiledata:trainnySpecificProfile,
                 trainnerProfileData:trainnerSpecificProfile,
+                deviceToken:user.deviceToken || '',
                 code:200,
                 //username:user.firstName +''+ user.lastName
               });
@@ -349,6 +356,7 @@ exports.signin = async (req, res, next) => {
                 profile:specific_User_Profile,
                 trainnyProfiledata:trainnySpecificProfile,
                 trainnerProfileData:trainnerSpecificProfile,
+                deviceToken:user.deviceToken || '',
                 code:200,
                 //username:user.firstName +''+ user.lastName
               });

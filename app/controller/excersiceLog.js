@@ -199,3 +199,22 @@ exports.macrosPostCalculater = function(req, res, next){
         }
     })
 }
+
+exports.getmacros = function(req,res,next){
+    let userId = req.body.userId;
+    macros.find({"userId":userId},function(err,dataMacros){
+        if(err){
+            res.send({
+                code:404,
+                msg:'Something went wrong'
+            })
+        }
+        else if(dataMacros){
+            res.send({
+                code:200,
+                msg:'Specific Macros',
+                content:dataMacros
+            })
+        }
+    })
+}

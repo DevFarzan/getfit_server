@@ -4,15 +4,16 @@ const Schema = mongoose.Schema;
 
 //define models
 const exerciseSchema = new Schema({
-    userId:{type:String},
-    date:{type:String},
-    time:{type:String},
-    month:{type:Number},
-    year:{type:Number},
-    dayOfMonth:{type:Number},
-    exerciseName:{type:Array},
-    exerciseAmount:{type:Object},
-    exerciseUnit:{type:Object},
+    mainObj:{type:Object},
+    // userId:{type:String},
+    // date:{type:String},
+    // time:{type:String},
+    // month:{type:Number},
+    // year:{type:Number},
+    // dayOfMonth:{type:Number},
+    // exerciseName:{type:Array},
+    // exerciseAmount:{type:Object},
+    // exerciseUnit:{type:Object},
 })
 
 //model class

@@ -18,7 +18,8 @@ exports.createGoal = function(req,res,next){
         time:fitnessdata.time,
         fitnessGoal:fitnessdata.fitnessGoal,
         dayOfWeek:fitnessdata.dayOfWeek,
-        year:fitnessdata.year
+        year:fitnessdata.year,
+        month:fitnessdata.month
      })
      fitnesGoalModel.save(function(err,successData){
          if(err){

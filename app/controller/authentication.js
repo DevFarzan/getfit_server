@@ -107,10 +107,9 @@ exports.signin = async (req, res, next) => {
   //console.log(useremail)
   User.findOne({email:useremail},function(err,user){
     if(user){
-      //onsole.log(user,'database user');
+      console.log(user,'database user');
       //const user = this;
       if(user.type == 'trainee'){
-
         if((user.trainnerId == undefined || user.trainnerId == null)){
         bcrypt.compare(password, user.password, function(err, isMatch){
           if(err){ return callback(err); }

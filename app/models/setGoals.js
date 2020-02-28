@@ -17,6 +17,7 @@ const setGoal = new Schema({
      time:{type:String},
      goalSteps:{type:String},
      fitnessGoal:{type:String},
+     dayOfWeek:{type:String}
 })
 
 //model class

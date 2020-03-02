@@ -9,7 +9,10 @@ exports.postpedometerdata = function(req,res,next){
         time:pedometerData.time,
         date:pedometerData.date,
         stepCount:pedometerData.stepCount,
-        dailGoal:pedometerData.dailGoal
+        dailGoal:pedometerData.dailGoal,
+        dayOfWeek:pedometerData.dayOfWeek,
+        year:pedometerData.year,
+        month:pedometerData.month
      })
      pedometerFinalModel.save(function(err,successData){
          if(err){

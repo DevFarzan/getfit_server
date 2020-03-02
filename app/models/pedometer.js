@@ -10,6 +10,9 @@ const pedometerSchema = new Schema({
      date:{type:String},
      stepCount:{type:String},
      dailGoal:{type:String},
+     dayOfWeek:{type:String},
+     year:{type:String},
+     month:{type:String}
 })
 
 //model class

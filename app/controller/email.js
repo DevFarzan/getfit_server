@@ -61,13 +61,15 @@ console.log('user cradential >>', userCradential)
     </html>`
       }
       //console.log(mailOptions);
-      smtpTransport.sendMail(mailOptions, function(error, response){
+      smtpTransport.sendMail(mailOptions, function(error,info){
          if(error){
-              console.log(error);
-        res.send("error");
+              console.log('Original error >>',error );
+        res.send(error);
+        // return console.log(error)
        }else{
               //console.log("Message sent: " + response.message);
               //console.log("Message sent: " + response.message);
+            
         res.send({
             code:200,
             msg:'email Sent to Admin',

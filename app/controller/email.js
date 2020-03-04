@@ -18,7 +18,6 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 
 exports.sendrequestemail = function(req,res,next){
     let userCradential = req.body;
-//    const name = 'user getfit'
 console.log('user cradential >>', userCradential)
     mailOptions={
         to : 'getfitathleticpk@gmail.com',

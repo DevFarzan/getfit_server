@@ -62,7 +62,7 @@ console.log('user cradential >>', userCradential)
       //console.log(mailOptions);
       smtpTransport.sendMail(mailOptions, function(error,info){
          if(error){
-              console.log('Original error >>',error );
+            //   console.log('Original error >>',error );
         res.send(error);
         // return console.log(error)
        }else{

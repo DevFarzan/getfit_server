@@ -7,8 +7,8 @@ var nodemailer = require('nodemailer');
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
-        user: "getfitatheletic@gmail.com",
-        pass: "getfit1234"
+        user: "waqasali.mumtaz95@gmail.com",
+        pass: "federal123"
     },
     tls: {
         rejectUnauthorized: false
@@ -20,7 +20,7 @@ exports.sendrequestemail = function(req,res,next){
     let userCradential = req.body;
 console.log('user cradential >>', userCradential)
     mailOptions={
-        to : 'getfitathleticpk@gmail.com',
+        to : 'waqasali.mumtaz95@gmail.com',
         subject : `${userCradential.packageName}`,
         html : `<html>
         <div style="padding: 5vw;">

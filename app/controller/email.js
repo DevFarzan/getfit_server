@@ -20,7 +20,7 @@ exports.sendrequestemail = function(req,res,next){
     let userCradential = req.body;
 console.log('user cradential >>', userCradential)
     mailOptions={
-        to : 'getfitathleticpk@gmail.com',
+        to : 'getfitathletic@gmail.com',
         subject : `${userCradential.packageName}`,
         html : `<html>
         <div style="padding: 5vw;">

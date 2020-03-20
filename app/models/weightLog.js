@@ -15,7 +15,11 @@ const weightSchema = new Schema({
     neck:{type:String},
     shoulder:{type:String},
     thigh:{type:String},
-    waist:{type:String},
+    waistAtNaval:{type:String},
+    below2Inches:{type:String},
+    above2Inches:{type:String},
+    calves:{type:String},
+    hips:{type:String},
     year:{type:Number},
     dayOfWeek:{type:Number},
 })

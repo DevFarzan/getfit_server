@@ -81,7 +81,11 @@ exports.weightPostLog = function(req,res,next){
     const neck = req.body.neck;
     const shoulder = req.body.shoulder;
     const thigh = req.body.thigh;
-    const waist = req.body.waist;
+    const waist = req.body.waistAtNaval;
+    const below2Inches = req.body.below2Inches;
+    const above2Inches = req.body.above2Inches;
+    const calves = req.body.calves;
+    const hips = req.body.hips;
     const year = req.body.year;
     const dayOfWeek = req.body.dayOfWeek;
 
@@ -100,6 +104,10 @@ exports.weightPostLog = function(req,res,next){
         shoulder:shoulder,
         thigh:thigh,
         waist:waist,
+        below2Inches:below2Inches,
+        above2Inches:above2Inches,
+        calves:calves,
+        hips:hips,
         year:year,
         dayOfWeek:dayOfWeek
     });

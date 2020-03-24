@@ -19,8 +19,8 @@ function tokenForUser(user){
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
-      user: "drens224@gmail.com",
-      pass: "drent1234"
+      user: "waqasali.mumtaz95@gmail.com",
+      pass: "federal123"
     },
     tls: {
         rejectUnauthorized: true
@@ -417,7 +417,7 @@ exports.comparePassword = function(req, res, next){
 
 exports.forgotpasword = function(req,res,next){
   var val = Math.floor(1000 + Math.random() * 9000);
-  console.log(val);
+  console.log('Verification Code >>', val);
   var email = req.body.email;
   if(!email){
     res.send({
@@ -463,7 +463,7 @@ exports.forgotpasword = function(req,res,next){
   }
   smtpTransport.sendMail(mailOptions, function(error, response){
      if(error){
-          console.log(error);
+          console.log('SMTP Error >>',error);
     res.end(error);
    }else{
           console.log("Message sent: " + response.message);

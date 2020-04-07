@@ -126,6 +126,7 @@ exports.signin = async (req, res, next) => {
           type:user.type,
           code:200,
           deviceToken:user.deviceToken || '',
+          countryCod:user.countryCod || ''
           //username:user.firstName +''+ user.lastName
         });
           }
@@ -174,6 +175,7 @@ exports.signin = async (req, res, next) => {
                   trainnerProfileData:trainnerSpecificProfile,
                   deviceToken:user.deviceToken || '',
                   code:200,
+                  countryCod:user.countryCod || ''
                   //username:user.firstName +''+ user.lastName
                 });
                   }
@@ -214,6 +216,7 @@ exports.signin = async (req, res, next) => {
                   email:user.email,
                   name:user.name,
                   mobileNo:user.mobileNo,
+                  countryCod:user.countryCod || '',
                   assignTrainner:user.assignTrainner,
                   assignTrainny:user.assignTrainny,
                   tainnyId:user.tainnyId,
@@ -257,6 +260,7 @@ exports.signin = async (req, res, next) => {
         type:user.type,
         mobileNo:user.mobileNo,
         deviceToken:user.deviceToken || '',
+        countryCod:user.countryCod || '',
         code:200,
         //username:user.firstName +''+ user.lastName
       });
@@ -304,6 +308,7 @@ exports.signin = async (req, res, next) => {
                 trainnyProfiledata:trainnySpecificProfile,
                 trainnerProfileData:trainnerSpecificProfile,
                 deviceToken:user.deviceToken || '',
+                countryCod:user.countryCod || '',
                 code:200,
                 //username:user.firstName +''+ user.lastName
               });
@@ -364,6 +369,7 @@ exports.signin = async (req, res, next) => {
                 trainnyProfiledata:trainnySpecificProfile,
                 trainnerProfileData:trainnerSpecificProfile,
                 deviceToken:user.deviceToken || '',
+                countryCod:user.countryCod || '',
                 code:200,
                 //username:user.firstName +''+ user.lastName
               });

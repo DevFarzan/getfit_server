@@ -8,6 +8,7 @@ const userSchema = new Schema({
   email:{type:String},
   password:{type:String},
   mobileNo:{type:String},
+  countryCod:{type:String},
   verified:{type:Boolean},
   name:{type:String},
   lastName:{type:String},

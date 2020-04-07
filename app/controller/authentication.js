@@ -33,6 +33,7 @@ exports.signup = function(req, res, next){
   const email = req.body.email;
   const password = req.body.password;
   const mobileNo = req.body.mobileNo;
+  const countryCod = req.body.countryCod;
   const verified = 'true';
   const name = req.body.name;
   const lastName = req.body.lastName;
@@ -57,6 +58,7 @@ exports.signup = function(req, res, next){
         email:email,
         password:password,
         mobileNo:mobileNo,
+        countryCod:countryCod,
         name:name,
         lastName:lastName,
         gender:gender,

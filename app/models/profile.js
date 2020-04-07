@@ -9,6 +9,7 @@ const profileSchema = new Schema({
     email:{type:String},
     address:{type:String},
     contactNo:{type:String},
+    countryCod:{type:String},
     gender:{type:String},
     image:{type:String},
     name:{type:String},

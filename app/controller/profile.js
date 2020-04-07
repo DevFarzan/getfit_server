@@ -14,6 +14,7 @@ exports.userProfilePost = function(req, res, next){
         email:req.body.email,
         address:req.body.address,
         contactNo:req.body.contactNo,
+        countryCod:req.body.countryCod,
         gender:req.body.gender,
         image:req.body.image,
         name:req.body.name,

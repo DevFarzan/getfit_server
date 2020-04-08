@@ -86,6 +86,7 @@ exports.otherpaymentmethod = function(req, res, next){
      amount: otherMethod.amount,
      currency: otherMethod.currency,
      transactionId: otherMethod.transactionId,
+     date:otherMethod.date,
      receiptImg: otherMethod.receiptImg,
      userId:otherMethod.userId,
   });

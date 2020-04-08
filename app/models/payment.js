@@ -12,6 +12,7 @@ const paymentSchema = new Schema({
      amount: {type:String},
      currency: {type:String},
      transactionId: {type:String},
+     date:{type:String},
      receiptImg: {type:String},
      userId:{type:String},
 })

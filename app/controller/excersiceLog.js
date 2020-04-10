@@ -74,6 +74,7 @@ exports.weightPostLog = function(req,res,next){
     const month = req.body.month;
     const time = req.body.time;
     const weight = req.body.weight;
+    const arms = req.body.arms;
     const date = req.body.date;
     const dayOfMonth = req.body.dayOfMonth;
     const biceps = req.body.biceps;
@@ -94,6 +95,7 @@ exports.weightPostLog = function(req,res,next){
         day:day,
         month:month,
         weight:weight,
+        arms:arms,
         date:date,
         time:time,
         userId:userId,

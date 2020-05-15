@@ -51,7 +51,7 @@ db.once('open', function (callback) {
 });
 
 
-
+console.log('Mongoose DB >>', db);
 
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });

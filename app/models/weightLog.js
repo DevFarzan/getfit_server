@@ -8,6 +8,7 @@ const weightSchema = new Schema({
     time:{type:String},
     month:{type:Number},
     weight:{type:String},
+    arms:{type:arms},
     day:{type:String},
     dayOfMonth:{type:Number},
     biceps:{type:String},

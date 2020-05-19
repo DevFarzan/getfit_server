@@ -67,8 +67,6 @@ exports.getAllLogData = function(req,res,next){
 
 
 exports.weightPostLog = function(req,res,next){
-    
-    
     const userId = req.body.userId;
     const day = req.body.day;
     const month = req.body.month;
